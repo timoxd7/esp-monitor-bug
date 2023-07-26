@@ -1,0 +1,13 @@
+# Note: if you change the phy_init or app partition offset, make sure to change the offset in Kconfig.projbuild
+# Name,      Type,     SubType,    Offset,     Size,     Flags
+#nvs for configuration
+nvs,         data,     nvs,        0x10000,    0x10000,
+
+#otadata needed for OTA partitions to mark which is active and valid
+otadata,     data,     ota,        0x20000,    0x2000,
+
+#phy_init needed later for antenna calibration and country specific settings
+phy_init,    data,     phy,        0x22000,    0x1000,   encrypted,
+
+#OTA partitions at fixed offset from the back, to make sure they stay in same place/size during updates/versions
+ota_0,       app,      ota_0,      0xA80000,   0x2C0000,
